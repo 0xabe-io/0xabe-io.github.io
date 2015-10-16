@@ -1,0 +1,17 @@
+# Site settings
+title: 0xabe.io
+description: >
+  Yet another security enthusiast's blog
+baseurl: ""
+url: "https://0xabe.io"
+twitter_username: 0xabe_io
+github_username:  0xabe-io
+
+# Build settings
+markdown: kramdown
+#safe: true
+
+gems:
+  - jekyll-feed
+  - jemoji
+  - jekyll-sitemap
