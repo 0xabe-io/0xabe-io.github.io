@@ -5,11 +5,18 @@ layout: default
 
   <header class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+    <p class="post-meta">
+      {{ page.date | date: "%b %-d, %Y" }}
+      {% if page.author %} • {{ page.author }}{% endif %}
+      {% if page.meta %} • {{ page.meta }}{% endif %}
+      • <a href="{{ page.url }}#disqus_thread" data-disqus-identifier="{{ page.url }}"></a>
+    </p>
   </header>
 
   <article class="post-content">
     {{ content }}
   </article>
+  {% include comments.html %}
+  <script id="dsq-count-scr" src="//0xabe.disqus.com/count.js" async></script>
 
 </div>
