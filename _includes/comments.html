@@ -1,6 +1,6 @@
 <div id="disqus_thread"></div>
 <script>
-    var disqus_developer = 1; /* TODO Comment out when the site is live */
+    /* var disqus_developer = 1;  Comment out when the site is live */
     var disqus_config = function () {
         this.page.url = "{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}";
         this.page.identifier = "{{ site.disqusid }}{{ page.url | replace:'index.html','' }}";
