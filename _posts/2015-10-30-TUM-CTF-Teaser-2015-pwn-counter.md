@@ -101,7 +101,7 @@ Between `0x400794` and `0x4007ae` we can see that the code loops over the buffer
 This can be interpreted as the following C code:
 {% highlight c %}
 for (i = 0; i < input_length; ++i) {
-  *(rsp + (byte)input[i]) += 1;
+  *(rsp + input[i]) += 1;
 }
 {% endhighlight %}
 
