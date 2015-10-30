@@ -160,7 +160,7 @@ gdb-peda$ x/22gx $rsp
 {% endhighlight %}
 
 You can see that the bytes between addresses `0x7fffffffdc41` and
-`0x7fffffffdc44` have been incremented by 4. These addresses match to the
+`0x7fffffffdc44` have been incremented by 4. These addresses correspond to the
 address of `rsp`, `0x7fffffffdc00`, plus the value in bytes of `A`, `B`, `C`
 and `D`: `0x41`, `0x42`, `0x43` and `0x44` respectively. You may find more
 information about ASCII characters value in hexadecimal [here][ascii].
