@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Remote iOS debugging from Linux over USB"
+title:  "Remote iOS application debugging from Linux over USB"
 date:   2015-11-01 20:00:00
 categories: howto iOS debug
 ---
