@@ -107,7 +107,7 @@ or upstart script that you can use to launch it.
 
 Connect your jailbroken iOS device to your Linux host and create an SSH tunnel:
 {% highlight shell-session %}
-$ sudo iproxy 2222 22
+$ iproxy 2222 22
 {% endhighlight %}
 
 Now you should be able to SSH to your iOS device through port 2222. If not
