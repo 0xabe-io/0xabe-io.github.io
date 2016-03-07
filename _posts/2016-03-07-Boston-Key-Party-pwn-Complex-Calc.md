@@ -108,7 +108,7 @@ End of assembler dump.
 * `0x6c4ab8` holds the result of the subtraction, say `sub_r`
 
 They all holds 32-bit values as explained in the Simple Calc write-up which
-mean that we have a controllable area of 12 bytes. We could have more with the
+means that we have a controllable area of 12 bytes. We could have more with the
 adjacent areas used for the other operation but we don't need them.
 
 # Analyzing `free`

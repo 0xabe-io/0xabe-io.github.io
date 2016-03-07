@@ -263,7 +263,7 @@ it will be on the stack, eventually the stack pointer `rsp` will point to it.
 
 `execve`is the [syscall number 59][syscalls] and the [calling
 convention][call_conv] tells us that the first argument must be passed in
-`rsi`, the second in `rsi` and the third in `rdx`. Therefore before launching
+`rdi`, the second in `rsi` and the third in `rdx`. Therefore before launching
 the syscall, the registers must hold the following values:
 
 * `RAX`: 59
