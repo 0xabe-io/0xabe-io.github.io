@@ -53,11 +53,11 @@ in the original binary:
 | 0x004156e3      0f84af000000   je 0x415798
 {% endhighlight %}
 
-The code tests if `rdi` is equal to zero. That register is not modified between
-the start of `free`, therefore it holds the first and only argument passed,
-which is the argument passed to `free`: the pointer to free.
+The code tests if `rdi` is equal to zero. That register holds the first and
+only argument passed, which is the argument passed to `free`: the pointer to
+free.
 
-If we try to execute the same payload that grilled the simple calculator, free
+If we try to execute the same payload that grilled the simple calculator, `free`
 will end up dereferencing a memory area area that is not allocated and
 segfault:
 {% highlight ca65 %}
@@ -65,10 +65,10 @@ segfault:
 {% endhighlight %}
 
 The ROP chain used in the Simple Calculator should work on that binary too
-because the gadgets are the same and located at the same addresses. We just
-need to find a way to trick `free` into believing that the address we give him
-is a valid chunk. For that we need a memory region that is not affected by ASLR
-and that we can control.
+because the gadgets are the same and they are located at the same addresses. We
+just need to find a way to trick `free` into believing that the address we give
+him is a valid chunk. For that we need a memory region that is not affected by
+ASLR and that we can control.
 
 # Memory region of interest
 
@@ -114,14 +114,14 @@ adjacent areas used for the other operation but we don't need them.
 # Analyzing `free`
 
 That `free` is part of the [GNU C library (glibc)][glibc] which means that we
-don't have to reverse it because the source code is available [here][free]. The
+don't have to reverse it because the source code is [available][free]. The
 patch that has been applied just removes the code on lines 2939 and 2940:
 {% highlight c %}
  if (mem == 0)                              /* free(0) has no effect */
    return;
 {% endhighlight %}
 
-The function returns if the test on line 2944 passes:
+The function returns if the test in the following `if` is true:
 {% highlight c%}
   p = mem2chunk (mem);
 
@@ -246,9 +246,9 @@ operation:
 
 The pointer to pass to `free` is the address of the memory region as given by a
 call to `malloc`, not the address of the chunk that we used lately. The correct
-address to pass to `free` is `0x6c4ac0` because the fields `size` and
+address is `0x6c4ac0` because the fields `size` and
 `prev_size` are located respectively 8 bytes and 16 bytes before it as shown at
-the beginning of the free function:
+the beginning of the `free` function:
 {% highlight ca65 %}
 | 0x004156e9      488b47f8       mov rax, qword [rdi - 8]    ; size
 | 0x004156ed      488d77f0       lea rsi, qword [rdi - 0x10] ; prev_size

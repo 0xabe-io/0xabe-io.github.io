@@ -33,7 +33,7 @@ RPATH      RUNPATH      FILE
 No RPATH   No RUNPATH   simple_calc
 {% endhighlight %}
 
-With `NX` activated -- well this 2016 after all -- we might have to create a ROP chain.
+With `NX` activated -- well is this 2016 after all -- we might have to create a ROP chain.
 
 # Operation
 
