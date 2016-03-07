@@ -5,7 +5,8 @@ date: 2016-03-07 20:00
 categories: ctf exploit
 ---
 
-TODO intro
+Here is the first pwn challenge of the Boston Key Party CTF. Stay tuned for the
+writeup of the Complex Calc challenge.
 
 #Basic information
 
