@@ -7,7 +7,7 @@ categories: ctf exploit
 
 Now that the Simple Calc is done, let's try the complex one!
 
-#Basic information
+# Basic information
 
 From the organizers:
 {% highlight text %}
@@ -54,7 +54,7 @@ in the original binary:
 {% endhighlight %}
 
 The code tests if `rdi` is equal to zero. That register holds the first and
-only argument passed, which is the argument passed to `free`: the pointer to
+only argument passed to `free` which is the pointer to
 free.
 
 If we try to execute the same payload that grilled the simple calculator, `free`
