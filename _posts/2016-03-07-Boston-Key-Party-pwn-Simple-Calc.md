@@ -8,7 +8,7 @@ categories: ctf exploit
 Here is the first pwn challenge of the Boston Key Party CTF. Stay tuned for the
 writeup of the Complex Calc challenge.
 
-#Basic information
+# Basic information
 
 From the organizers:
 {% highlight text %}
@@ -35,7 +35,7 @@ No RPATH   No RUNPATH   simple_calc
 
 With `NX` activated -- well this 2016 after all -- we might have to create a ROP chain.
 
-#Operation
+# Operation
 
 Obviously the binary is a calculator. It starts by asking the number of
 expected operations:
@@ -136,7 +136,7 @@ Do you really need help calculating such small numbers?
 Shame on you... Bye
 {% endhighlight %}
 
-#Searching for the vulnerability
+# Searching for the vulnerability
 
 The option number 5 `Save and Exit.` doesn't really save the results to disk
 but it copies the content of the buffer allocated by `malloc` to the stack and
@@ -235,7 +235,7 @@ __libc_free (void *mem)
 {% endhighlight %}
 [source][libc_free]
 
-#Exploitation
+# Exploitation
 
 The layout of what we want to create looks something like this:
 {% highlight text %}
