@@ -12,13 +12,13 @@ over USB!
 
 Here is what you need:
 
-* a jailbroken iOS device (I used an iOS 9.0.2 one) with OpenSSH isntalled
+* a jailbroken iOS device (I used an iOS 9.0.2 one) with OpenSSH installed
 * an OS X installation with Xcode for the `debugserver` (iOS equivalent of
   `gdbserver`)
 * that fancy USB proprietary cable
 * your favorite Linux installation
 
-#Getting debugserver
+# Getting debugserver
 
 This part is taken from that [guide][debugserver]. 
 
@@ -81,7 +81,7 @@ $ codesign -s - --entitlements entitlements.plist -f debugserver
 
 And finally copy the newly signed `debugserver` to your Linux machine (e.g. with SSH).
 
-#Preparing the Linux host
+# Preparing the Linux host
 
 I mentioned that `debugserver` is an iOS application equivalent to the
 `gdbserver`. It's not entirely true because it is not compatible with `gdb` but
@@ -123,7 +123,7 @@ $ scp -P 2222 debugserver root@localhost:/var/private/root/
 
 Now everything is set to debug your favorite application.
 
-#Finally debug something
+# Finally debug something
 
 To remotely debug an application, `debugserver` binds to a port so that you can
 connect to it with `lldb`. Creating a tunnel with `iproxy` to that specific port
