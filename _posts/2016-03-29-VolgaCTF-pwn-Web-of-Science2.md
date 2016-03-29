@@ -143,7 +143,8 @@ gef➤  x/gx 0x7ffff7677eee
 0x7ffff7677eee <__srandom_r+206>:	0x48c031ed75fffb83
 {% endhighlight %}
 
-Let's see what they contain on the remote binary:
+Let's see what they contain on the remote binary by using the `%s` format this
+time:
 {% highlight shell-session %}
 $ nc webofscience2.2016.volgactf.ru 45679
 Tell me your name first
