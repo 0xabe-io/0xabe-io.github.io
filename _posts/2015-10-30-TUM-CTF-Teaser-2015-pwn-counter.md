@@ -9,7 +9,7 @@ I had the possiblity to play a few hours on [TUM CTF Teaser][tum]. It was
 nicely organized and the challenges were fun to solve - even for the easy ones.
 Here is the first write-up I am going to publish for that CTF.
 
-#Basic information
+# Basic information
 
 From the organizers:
 {% highlight text %}
@@ -55,7 +55,7 @@ OFFSET           TYPE              VALUE
 0000000000600cc0 R_X86_64_JUMP_SLOT  execl               <=
 {% endhighlight %}
 
-#Disassembling
+# Disassembling
 
 When interacting with the service, no welcome message or instruction is
 provided, it only seems to echo our input. The call to fscanf is made at `0x40074f`:
@@ -165,7 +165,7 @@ address of `rsp`, `0x7fffffffdc00`, plus the value in bytes of `A`, `B`, `C`
 and `D`: `0x41`, `0x42`, `0x43` and `0x44` respectively. You may find more
 information about ASCII characters value in hexadecimal [here][ascii].
 
-#Exploitation
+# Exploitation
 
 Here is the information about the current stack frame, when the vulnerable code is executed:
 {% highlight shell-session %}
