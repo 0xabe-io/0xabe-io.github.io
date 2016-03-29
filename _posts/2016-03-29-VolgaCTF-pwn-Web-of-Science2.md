@@ -4,8 +4,8 @@ title: "VolgaCTF - Web of Science 2"
 date: 2016-03-29 00:00
 categories: ctf exploit
 ---
-This is the second pwn that is based on Web of Science. Stay tuned for the
-write-up for the third and final one.
+This is the second pwn of VolgaCTf; it is based on Web of Science. Stay tuned
+for the write-up for the third and final one.
 
 Now that NX is activated, Let's do some real exploitation with a good old ROP chain!
 
