@@ -57,7 +57,7 @@ functions were added to it. They can be fragments of the next binary.
 The operation is the same as the previous one, therefore I won't go into more
 details.
 
-## Vulnerabilities
+# Vulnerabilities
 
 The vulnerabilities are the same as the previous one:
 
@@ -67,7 +67,7 @@ The vulnerabilities are the same as the previous one:
 The stack is layed out exactly the same as for the previous binary, therefore I
 won't reexplain both vulnerabilities.
 
-## Exploitation
+# Exploitation
 
 The goal of the ROP chain is to create a remote shell so that we can find the
 flag. The `execve` system call will be used to invoke `/bin/sh`.
