@@ -4,6 +4,8 @@ title: "VolgaCTF - Web of Science 2"
 date: 2016-03-29 00:00
 categories: ctf exploit
 ---
+This is the second pwn that is based on Web of Science. Stay tuned for the
+write-up for the third and final one.
 
 Now that NX is activated, Let's do some real exploitation with a good old ROP chain!
 
@@ -192,7 +194,7 @@ All that information can be seen in the manpage of `execve` and `syscall`.
 {% endhighlight %}
 
 The addresses are offsets from the beginning of the libc. To that the base
-address must be added. Earlier we leaked a pointer the libc and found the base
+address must be added. Earlier we leaked a pointer to the libc and found the base
 address. The offset of the leaked address can be calculated as follow:
 {% highlight shell-session %}
 offset = leaked_addr - base_addr
