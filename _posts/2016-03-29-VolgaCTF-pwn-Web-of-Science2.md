@@ -72,7 +72,7 @@ won't reexplain both vulnerabilities.
 The goal of the ROP chain is to create a remote shell so that we can find the
 flag. The `execve` system call will be used to invoke `/bin/sh`.
 
-Unfortunatly the binary doesn't contain some key gadgets to construct the ROP
+Unfortunately the binary doesn't contain some key gadgets to construct the ROP
 chain easily, therefore we need to take them from the libc.
 
 When we look at the strings contained inside the binary, we can see that it was
@@ -94,7 +94,7 @@ to leak some part of it and compare.
 Some libc are known to contain a magic gadget that execute `/bin/sh` by itself
 which makes the exploitation rather easy because no ROP chain has to be built.
 However, even if the magic gadget was executing without any problem, I don't
-understand why no shell was poped. Therefore a proper ROP chain must be
+understand why no shell was popped. Therefore a proper ROP chain must be
 created.
 
 ![y u no work](http://cdn.meme.am/cache/instances/folder212/500x/67595212.jpg)
