@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "VolgaCTF - Web of Science"
-date: 2016-03-29 08:00
+date: 2016-03-29 00:00
 categories: ctf exploit
 ---
 
