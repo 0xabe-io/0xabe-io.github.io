@@ -4,7 +4,7 @@ title: "VolgaCTF - Web of Science 2"
 date: 2016-03-29 00:00
 categories: ctf exploit
 ---
-This is the second pwn of VolgaCTf; it is based on Web of Science. Stay tuned
+This is the second pwn of VolgaCTF; it is based on Web of Science. Stay tuned
 for the write-up for the third and final one.
 
 Now that NX is activated, Let's do some real exploitation with a good old ROP chain!
@@ -24,10 +24,10 @@ nc webofscience2.2016.volgactf.ru 45679
 The binary has the same attributes as the previous one except that NX is now activated.
 
 {% highlight shell-session %}
-$ file web_of_science
-web_of_science: ELF 64-bit LSB executable, x86-64, version 1 (SYSV),
+$ file web_of_science2
+web_of_science2: ELF 64-bit LSB executable, x86-64, version 1 (SYSV),
 dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux
-2.6.24, BuildID[sha1]=85e0df26435ee411258ad39668c9700b1ebadec9, stripped
+2.6.24, BuildID[sha1]=0c5d7d7d73092b5c461224f85810b24cf0a08763, stripped
 
 $ checksec --file web_of_science
 RELRO
