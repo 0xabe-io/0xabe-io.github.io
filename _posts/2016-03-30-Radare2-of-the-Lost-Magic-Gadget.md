@@ -2,7 +2,7 @@
 layout: post
 title:  "Radare2 of the Lost Magic Gadget"
 date:   2016-03-30 08:00
-categories: ctf exploit
+categories: howto exploit
 ---
 
 OK this is a bad pun to a rather nice movie. You may already have heard of the
