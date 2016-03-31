@@ -188,17 +188,21 @@ Let's have a look at those addresses:
 {% endhighlight %}
 
 We might be in the middle of the magic gadget because we already have `rdi` and
-`rdx` registers set and the call to `execve`. Only `rsi` register is missing,
-let's have a look at couple instructions above:
+`rdx` registers set and the call to `execve`. Only `rsi` register is missing
+and we need an instruction that will load something into `rax`, let's have a
+look at few instructions above:
 {% highlight shell-session %}
-[0x00020830]> pd -2 @0xd6063
-|           0x000d605c      2c00           sub al, 0
+[0x00020830]> pd -4 @0xd6063
+|           0x000d6054      51             push rcx
+|           0x000d6055      0000           add byte [rax], al
+|           0x000d6057      488b05424e2c.  mov rax, qword [rip + 0x2c4e42] ; [0x39aea0:8]=0
 |           0x000d605e      488d742470     lea rsi, qword [rsp + 0x70] ; 0x70 ; sym.data.8589 ; sym.data.8589
 {% endhighlight %}
 
 That's it we have found the magic gadget:
 {% highlight shell-session %}
-[0x00020830]> pd 4 @0x000d605e
+[0x00020830]> pd 5 @0x000d6057
+|           0x000d6057      488b05424e2c.  mov rax, qword [rip + 0x2c4e42] ; [0x39aea0:8]=0
 |           0x000d605e      488d742470     lea rsi, qword [rsp + 0x70] ; 0x70 ; sym.data.8589 ; sym.data.8589
 |           0x000d6063      488d3d80e008.  lea rdi, qword [rip + 0x8e080] ; 0x1640ea ; hit0_0 ; "/bin/sh" @ 0x1640ea
 |           0x000d606a      488b10         mov rdx, qword [rax]
@@ -237,8 +241,8 @@ We can see that `rax` is set with 59 followed by the `syscall` instruction.
 That example showed to magic gadget of the latest libc available in Arch Linux (glibc 2.23-1).
 Here it is for the latest Ubuntu 14.04 (libc6 2.19-0ubuntu6.7):
 {% highlight shell-session %}
-[0x00021fd0]> pd 7 @0x0004652e
-|           0x0004652e      0575793700     add eax, 0x377975
+[0x00021fd0]> pd 7 @0x0004652c
+|           0x0004652c      488b05757937.  mov rax, qword [rip + 0x377975] ; [0x3bdea8:8]=0
 |           0x00046533      488d3da16713.  lea rdi, qword [rip + 0x1367a1] ; 0x17ccdb ; hit0_0 ; "/bin/sh" @ 0x17ccdb
 |           0x0004653a      488d742430     lea rsi, qword [rsp + 0x30] ; 0x30 ; section_end..gnu.warning.fdetach ; section_end..gnu.warning.fdetach
 |           0x0004653f      c70577a13700.  mov dword [rip + 0x37a177], 0 ; [0x3c06c0:4]=32
