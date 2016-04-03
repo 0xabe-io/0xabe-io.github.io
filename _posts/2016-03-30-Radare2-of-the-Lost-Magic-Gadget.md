@@ -8,10 +8,10 @@ categories: howto exploit
 OK this is a bad pun to a rather nice movie. You may already have heard of the
 magic gadget that exists to rule them all, more seriously, a gadget located in
 the libc that executes a shell by itself. The problem is that depending on the
-Linux distribution and the version of the libc, it might located at different
-places and have different instructions. Therefore we can't just search for a
-sequence of bytes. In this blog post, I propose a rather easy and lightweight
-method to finding it with [Radare 2][radare2]. Happy hunting!
+Linux distribution and the version of the libc, it might be located at
+different places and have different instructions. Therefore we can't just
+search for a sequence of bytes. In this blog post, I propose a rather easy and
+lightweight method of finding it with [Radare 2][radare2]. Happy hunting!
 
 # Radare 2
 
@@ -211,7 +211,7 @@ That's it we have found the magic gadget:
 
 The address `0x000d605e` is the offset of the magic gadget. To have the real
 address one has to find the base address at which the libc is loaded (e.g. by
-using `vmmstat` in GDB).
+using `vmmap` in GDB).
 
 If you are curious and want to see what is done by the function `execve`:
 {% highlight shell-session %}
