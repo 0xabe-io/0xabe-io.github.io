@@ -146,7 +146,7 @@ The code is really simple and here what happens when everything goes right:
   `0x00400821      0fb64d00       movzx ecx, byte [rbp]`
   `0x00400825      31c1           xor ecx, eax`
 
-Afterward, it calls `mprotect` on the same page to remove the write permission and asks if it was worth it before exiting.
+Afterwards, it calls `mprotect` on the same page to remove the write permission and asks if it was worth it before exiting.
 
 It means that we can flip one bit anywhere in the memory (except in the kernel of course).
 

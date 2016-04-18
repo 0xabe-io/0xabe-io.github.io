@@ -66,7 +66,7 @@ the number of calculation is stored by `scanf` at `[rbp - local_14h]`:
 | 0x004013fa      e8c1700000     call sym.__isoc99_scanf
 {% endhighlight %}
 
-Afterward there is a check on that value. If the value is not between 4 and
+Afterwards there is a check on that value. If the value is not between 4 and
 255, the program exits while printing `Invalid number.`:
 {% highlight ca65 %}
 |      0x00401409      8b45ec         mov eax, dword [rbp - local_14h]
