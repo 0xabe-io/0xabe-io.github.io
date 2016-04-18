@@ -6,6 +6,7 @@ permalink: /links/
 
 ## Blogs
 
+* [DUKS](https://duksctf.github.io/)
 * [DEADC0DE.RE](https://deadc0de.re)
 * [H4ck, goddamnit!](http://h4ck.go.ddamn.it/)
 * [Freeture.ch](https://www.freeture.ch/)
