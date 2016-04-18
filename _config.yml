@@ -10,8 +10,19 @@ github_username:  0xabe-io
 # Build settings
 markdown: kramdown
 #safe: true
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
 
 gems:
   - jekyll-feed
   - jemoji
   - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CNAME
