@@ -5,7 +5,7 @@ date: 2016-04-18 03:00
 categories: ctf exploit
 ---
 
-Here another solution to a pwn challenge. They are no vulnerability per say, but a rather interesting way of getting code execution through floating point arithmetics.
+Here is another solution to a pwn challenge. They are no vulnerability per say, but a rather interesting way of getting code execution through floating point arithmetics.
 
 # Basic information
 
