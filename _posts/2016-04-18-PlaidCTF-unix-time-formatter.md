@@ -5,7 +5,7 @@ date: 2016-04-18 01:00
 categories: ctf exploit
 ---
 
-Last weekend was held the [PlaidCTF][plaidctf], as usual with high quality and very demanding challenges to solve. Here is a solution to the first pwn challenge `unix_time_formatter`.
+Last weekend was held the [PlaidCTF][plaidctf], as usual with high quality and very demanding challenges to solve. Here is a solution to the first pwn challenge `unix_time_formatter`. This entry level pwnabel challenge proposes a use-after-free vulnerability that is used to inject commands in a call to system
 
 # Basic Information
 
