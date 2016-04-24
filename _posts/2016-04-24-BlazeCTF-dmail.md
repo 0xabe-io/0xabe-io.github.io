@@ -473,7 +473,7 @@ When a shift is done with a value that is to big, it's behavior is "not determin
 Which means that we will have strange effects when we choose a cubby number near 32. I wrote a small program to show that behavior:
 
 ```c
-include <stdlib.h>
+#include <stdlib.h>
 #include <stdio.h>
 
 int main(void)
