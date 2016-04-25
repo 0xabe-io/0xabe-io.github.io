@@ -523,7 +523,7 @@ All security features are set (except for [PaX & grsecurity][grsec]):
 * Full RELRO: we can't overwrite an entry in the global offset table (GOT), therefore we need to overwrite a saved `rip` value on the stack;
 * PIE (and ASLR): every part of the program are located at random locations in the memory, therefore we need to leak addresses to finally find one on the stack.
 
-This leads to the following steps that needs to be done in order to execute a shell:
+This leads to the following steps that need to be done in order to execute a shell:
 
 * leak a heap address;
 * leak a libc address;
