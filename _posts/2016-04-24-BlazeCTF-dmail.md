@@ -649,7 +649,7 @@ gdb-peda$ x/8gx 0x7fffffffdcb0
 0x7fffffffdce0:	0x00007fffffffdd00	0x0000555555554dd6 <= saved_rip
 ```
 
-If we use the size to trick `malloc`, the check will never work because when a cubby is allocated, `malloc` rounds the size of the cubby to the size of a chunk and it is not possible to make them equal. Here is a simple program that proves it by allocating chunks and shows the difference between the requested size and the size in the chunk header:
+If we use the size to trick `malloc`, the check will never work because when a cubby is allocated, `malloc` rounds the size of the cubby to the size of a chunk and it is not possible to make them equal. Here is a simple program that proves it by allocating chunks and showing the difference between the requested size and the size in the chunk header:
 
 ```c
 #include <stdlib.h>
