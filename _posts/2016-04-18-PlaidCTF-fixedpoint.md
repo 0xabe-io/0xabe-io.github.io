@@ -5,7 +5,7 @@ date: 2016-04-18 03:00
 categories: ctf exploit
 ---
 
-Here is another solution to a pwn challenge. They are no vulnerability per say, but a rather interesting way of getting code execution through floating point arithmetics.
+Here is another solution to a pwn challenge. They is no vulnerability per say, but a rather interesting way of getting code execution through floating point arithmetics.
 
 # Basic information
 
@@ -66,7 +66,7 @@ As we can see the code is quite simple:
 
 * it allocates an `array` for 8192 floats (4 bytes each)
 * reads from stdin a number
-* divide it by 1337 and store it in the array
+* divides it by 1337 and store it in the array
 * once 8192 values have been read or scanf was not able to extract a value, it tries to execute what is contained in `array`
 
 If we can insert correct opcodes into the array, we would be able to execute arbitrary instructions. The problem is that with floats and the division by 1337 they are some value that we can't produce.

@@ -14,9 +14,13 @@ From the organizers:
 ```
 Pwnable (150 pts)
 
-Sometimes the universe smiles upon you. And sometimes, well, you just have to roll your sleeves up and do things yourself. Running at butterfly.pwning.xxx:9999
+Sometimes the universe smiles upon you. And sometimes, well, you just have to
+roll your sleeves up and do things yourself. Running at
+butterfly.pwning.xxx:9999
 
-Notes: The binary has been updated. Please download again if you have the old version. The only difference is that the new version (that's running on the server) has added setbuf(stdout, NULL); line.
+Notes: The binary has been updated. Please download again if you have the old
+version. The only difference is that the new version (that's running on the
+server) has added setbuf(stdout, NULL); line.
 ```
 
 We have an unstripped ELF 64-bit executable with stack canaries and NX enabled.
@@ -118,13 +122,13 @@ EST THY COSMIC RAY?" @ 0x400914
 0x00400883      e888fdffff     call sym.imp.__stack_chk_fail
 ```
 
-The code is really simple and here what happens when everything goes right:
+The code is really simple and here is what happens when everything goes right:
 
 * it prints `THOU ART GOD, WHITHER CASTEST THY COSMIC RAY?`
 
 * reads 49 (0x32 - 1) characters from the standard input with [`fgets`][fgets]
 
-* stores it as a `long` with [`strtol`][strtol]. Let's name it `input_val`. `strtol` takes a base as it third argument. Here `0` is passed which a special case where it will interpret either octal, decimal or hexadecimal values (cf the [manpage][strtol]).
+* stores it as a `long` with [`strtol`][strtol]. Let's name it `input_val`. `strtol` takes a base as its third argument. Here `0` is passed which is a special case where it will interpret either octal, decimal or hexadecimal values (cf the [manpage][strtol]).
 
 * shifts right the value by 3 (divide it by 8). Let's name it `addr`
   `0x004007eb      48c1fd03       sar rbp, 3`
@@ -134,7 +138,7 @@ The code is really simple and here what happens when everything goes right:
 
 * calls [`mprotect`][mprotect] to activate read, write and execute permissions on the page
 
-* keep the 3 lowest bits of `input_val`. Let's name it `bit_nr`
+* keeps the 3 lowest bits of `input_val`. Let's name it `bit_nr`
   `0x0040080f      80e307         and bl, 7`
 
 * shifts left `1` by `bit_nr`. Let's name it `bit_flip`

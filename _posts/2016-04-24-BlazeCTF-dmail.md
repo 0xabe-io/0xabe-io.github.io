@@ -577,7 +577,7 @@ Instead of printing `AAAAAAAA` we have the address of the second cubby. Note tha
 
 ### Libc address
 
-When smallchunks (not fastchunks) are `free`'d, there are put in a double-linked free list and pointers to the previous and next chunks are stored in the chunk. When the chunk is at the beginning of the list or at the end, it will have a pointer to the main arena in the libc. We can use that to leak a libc pointer. To do that we have to:
+When smallchunks (not fastchunks) are `free`'d, they are put in a double-linked free list and pointers to the previous and next chunks are stored in the chunk. When the chunk is at the beginning of the list or at the end, it will have a pointer to the main arena in the libc. We can use that to leak a libc pointer. To do that we have to:
 
 * create cubby `0` with its content being an address of a previously `free`'d cubby;
 * create the cubby `31` with a size bigger than 256. This has two effects:

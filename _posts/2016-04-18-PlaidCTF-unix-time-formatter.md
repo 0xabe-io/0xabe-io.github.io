@@ -68,7 +68,7 @@ The function to set the format does the following:
 
 * calls a function that I named `get_format`
 * calls a function that I named `check_format`
-* if everything is OK, stores the returned value in a global variable that I named here `FORMAT`
+* if everything is OK, it stores the returned value in a global variable that I named here `FORMAT`
 
 ```
 0x00400e00      53             push rbx
@@ -149,7 +149,7 @@ The function to set the timezone does the same as the one to set the format, exc
 The functions to print the time does the following:
 
 * Check if a format is set by checking if the global variable `FORMAT` is not null
-* Set the value pointed by `TZ` in the environment variables with [`setenv`][setvenv]
+* Set the value pointed by `TZ` in the environment variables with [`setenv`][setenv]
 * call [`system`][system] with `"/bin/date -d @%d +'%s'"` (`%d` is the time that we could have set and `%s` is the format that we have set).
 
 ```
