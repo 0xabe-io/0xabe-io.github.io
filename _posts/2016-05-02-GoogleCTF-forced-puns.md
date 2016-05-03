@@ -417,7 +417,7 @@ In the first payload I wanted to use the [magic gadget][magicgadget] to easily p
 
 When `malloc` is called to add an entry, `x21` is set, leaving us with `x24` having zero. I had to find a way to set a correct value into that register.
 
-In aarch64, when `ret` is executed without a register, it returns at the address stored in `x30` and restore the stack pointer with the address in `x29`.
+In aarch64, when `ret` is executed without a register, it returns at the address stored in `x30` and restore the stack pointer with the address in `x29` (cf. the [calling convention][callconv]).
 
 Here are the next steps to continue the payload:
 
@@ -713,3 +713,4 @@ Why go the easy way? `(┛◉Д◉)┛┻━┻`
 [socat]: http://www.dest-unreach.org/socat/
 [magicgadget]: {% post_url 2016-03-30-Radare2-of-the-Lost-Magic-Gadget %}
 [execve]: http://man7.org/linux/man-pages/man2/execve.2.html
+[callconv]: https://en.wikipedia.org/wiki/Calling_convention#ARM_.28A64.29
