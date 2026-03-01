@@ -5,8 +5,6 @@ date: 2026-03-01 01:00
 categories: research virtualization ARM aarch64 UEFI hypervisor
 ---
 
-# Chapter 0: Introduction to UEFI and the EFI Development Kit
-
 This is the first part of a series about developing a passthrough hypervisor for ARM (AArch64). Since I followed  a few years ago the amazing [Hypervisor Development for Security Researchers](https://tandasat.github.io/Hypervisor_Development_for_Security_Researchers.html) training by Satoshi Tanda, I wanted to build a similar hypervisor for an ARM platform. In this series, the target platform is QEMU's `virt` machine type with EDK2 UEFI firmware — a setup that lets us develop and test without dedicated hardware. By the end of the series, we will have a minimal hypervisor that boots as a UEFI application to transparently virtualize the operating system that loads after it.
 
 This first article lays the groundwork. It begins with virtualization fundamentals on both x86 and ARM, explaining how hardware support differs between the two architectures. It then walks through the UEFI boot process in detail — understanding where our hypervisor fits in the boot flow is essential. Finally, it covers the development environment setup so that by the end you can boot into a UEFI Shell on an emulated AArch64 machine, and execute a simple application.
