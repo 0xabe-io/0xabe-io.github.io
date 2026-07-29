@@ -15,6 +15,8 @@ This chapter does both, and stops just short of issuing the `ERET`. The actual e
 
 The source code for this chapter is available at [https://gitlab.com/0xabe.io/hvarm](https://gitlab.com/0xabe.io/hvarm).
 
+> **Errata (2026-07).** After this chapter was published, wiring up the real `ERET` in Chapter 4 surfaced a bug in the stage-2 `VTCR_EL2` configuration presented below: the FEAT_LPA2 **start-level −1 encoding is wrong**. The chapter uses `SL0 = 0b11` with `SL2 = 1`, but level −1 at the 4KB granule is `{SL2 = 1, SL0 = 0b00}` — `{SL2 = 1, SL0 = 0b11}` is a *reserved* combination and the stage-2 walker faults at the very first level. It stayed invisible throughout this chapter precisely because the placeholder trampoline only `ret`s: stage 2 is never actually walked from EL1, so the reserved `SL0` never gets a chance to fault. The moment Chapter 4 turns the `ret` into an `eret`, the guest's first instruction fetch takes a stage-2 translation fault at level 0 (`EC=0x20`, `S1PTW`). The fix is a one-character change — `Sl0 = 0x0` instead of `0x3` — which makes the assembled `VTCR_EL2` come out as **`0x38006350C`** (was `0x3800635CC`). The affected sections below carry inline errata notes.
+
 ---
 
 ## Why stage 2 has to come before any ERET to EL1
@@ -44,6 +46,14 @@ The starting-level selection follows the same logic we discussed for stage 1 in 
 | 31–39                  | L1          | `SL0=0b01`, `SL2=0` |
 | 40–48                  | L0          | `SL0=0b10`, `SL2=0` |
 | 49–52 (FEAT_LPA2)      | L−1         | `SL0=0b11`, `SL2=1`, `DS=1` |
+
+> **Errata (2026-07).** The **L−1 row above and the `Sl0 = 0x3` line in the code below are wrong.** Per the Arm ARM `AArch64.S2StartLevel`, for the 4KB granule with `DS = 1` the pair `{SL2, SL0}` decodes as `000→L2`, `001→L1`, `010→L0`, `011→L3`, and `100` (that is, `SL2 = 1, SL0 = 0b00`) selects **L−1**. So the 52-bit row must read `SL0 = 0b00`, `SL2 = 1`, `DS = 1`, and the code must set `Sl0 = 0x0`:
+>
+> ```c
+> StartLevel = -1; Sl0 = 0x0; Sl2 = 1; Ds = TRUE;
+> ```
+>
+> `{SL2 = 1, SL0 = 0b11}` is a *reserved* encoding, so the walker faults at the top level. With `Sl0 = 0x0` the assembled `VTCR_EL2` is **`0x38006350C`**, not the `0x3800635CC` quoted at the end of this section. The other rows (L0/L1/L2/L3) are correct. See the introduction erratum for why this stayed latent until the `ret` became an `eret` in Chapter 4.
 
 `BuildVtcrConfig()` reads [`ID_AA64MMFR0_EL1.PARange`](https://developer.arm.com/documentation/ddi0601/2026-03/AArch64-Registers/ID-AA64MMFR0-EL1--AArch64-Memory-Model-Feature-Register-0) to find the implemented PA size, then sets `T0SZ = 64 − PaBits` and picks the start level from the table. The 52-bit branch needs an extra check, though:
 
@@ -597,6 +607,8 @@ Entry point returned: Success
 
 FS1:\>
 ```
+
+> **Errata (2026-07).** This captured log predates the `SL0` fix, so two lines show the buggy values: `SL0: 3` and `VTCR_EL2: 0x3800635CC`. With the correction they read `SL0: 0` and `VTCR_EL2: 0x38006350C`. Everything else in the log is unaffected — and because the trampoline still `ret`s at this stage, the wrong `SL0` has no visible effect here; it only faults once the `eret` goes live in Chapter 4.
 
 The interesting transition is in the `HCR_EL2` line: `0x408000038 -> 0x480000039`. Decoding both: the entry value has E2H=1, TGE=1, IMO=FMO=AMO=1, VM=0, RW=0; the exit value has E2H=1, TGE=0, IMO=FMO=AMO=1, VM=1, RW=1. That's AAVMF handing us VHE-as-host (TGE=1, RW=0) and us converting it into a hypervisor posture (TGE=0, RW=1, VM=1) in the activation MSR. `CPTR_EL2` moves `0x300000 -> 0x330000` on the VHE path: FP was already un-trapped (`FPEN=0b11`) and we additionally ungate SVE (`ZEN=0b11`); the step is cheap here and load-bearing on firmware that leaves the traps set.
 
