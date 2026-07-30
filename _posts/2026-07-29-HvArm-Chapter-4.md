@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "HvArm: Chapter 4: Exception Vectors, the GIC, and the ERET to EL1"
-date: 2026-07-30 01:00
+date: 2026-07-29 01:00
 categories: hypervisor arm
 ---
 
